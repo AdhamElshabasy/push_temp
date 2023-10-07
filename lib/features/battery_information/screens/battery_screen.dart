@@ -1,4 +1,4 @@
-import 'dart:developer' as developer;
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:push_temp/features/battery_information/data/battery_service.dart';
 import 'package:push_temp/features/battery_information/widgets/semi_circle_progress_bar.dart';
@@ -36,11 +36,12 @@ class _BatteryScreenState extends State<BatteryScreen> {
       setState(() {
         // _batteryLevel = batteryLevel;
         _batteryTemperature = batteryTemperature;
-        mappedTemp = ((_batteryTemperature - 0.0) / (60.0 - 0.0)) * (1.0 - 0.0) + 0.0;
+        mappedTemp =
+            ((_batteryTemperature - 0.0) / (60.0 - 0.0)) * (1.0 - 0.0) + 0.0;
       });
     } catch (e) {
       // Handle errors gracefully, e.g., log the error or show an error message.
-      developer.log('Error fetching battery info: $e');
+      log('Error fetching battery info: $e');
     }
   }
 
@@ -66,8 +67,8 @@ class _BatteryScreenState extends State<BatteryScreen> {
               width: 250.0,
               height: 100.0,
               child: CustomPaint(
-                painter: SemicircleProgressPainter(
-                    mappedTemp, _batteryTemperature), // Set progress value (0.0 to 1.0)
+                painter: SemicircleProgressPainter(mappedTemp,
+                    _batteryTemperature), // Set progress value (0.0 to 1.0)
               ),
             ),
           ],

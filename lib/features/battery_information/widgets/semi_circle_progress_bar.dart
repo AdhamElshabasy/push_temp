@@ -3,6 +3,20 @@ import 'dart:math';
 
 //-------------------------------------------------------------------------//
 
+Color getColorBasedOnNumber(int number) {
+  if (number <= 20) {
+    return Colors.lightBlue;
+  } else if (number >= 21 && number <= 35) {
+    return Colors.green;
+  } else if (number >= 36 && number <= 45) {
+    return Colors.yellow;
+  } else {
+    return Colors.red;
+  }
+}
+
+//-------------------------------------------------------------------------//
+
 class SemicircleProgressPainter extends CustomPainter {
   final double progress;
   final int batteryTemp;
@@ -15,25 +29,27 @@ class SemicircleProgressPainter extends CustomPainter {
     final backgroundPaint = Paint()
       ..color = Colors.white70 // Set the background color
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 16.0;
+      ..strokeWidth = 26.0
+      ..strokeCap = StrokeCap.round;
 
     // Draw the filled progress arc
     final progressPaint = Paint()
-      ..color = Colors.green // Set the progress color
+      ..color = getColorBasedOnNumber(batteryTemp) // Set the progress color
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 16.0; // Set the stroke width to the height to create a semicircle
+      ..strokeWidth = 26.0 // Set the stroke width to the height to create a semicircle
+      ..strokeCap = StrokeCap.round;
 
     final center = Offset(size.width / 2, size.height / 2);
     final radius = size.width / 2;
 
-    const startAngle = -pi / 1; // Start angle is at 12 o'clock (top)
-    final sweepAngle = pi * progress; // Half of a circle
+    const startAngle = -pi / 0.8; // Start angle is at 12 o'clock (top)
+    final sweepAngle = 3 * pi / 2 * progress; // Half of a circle
 
     // Draw the background (empty) arc
     canvas.drawArc(
       Rect.fromCircle(center: center, radius: radius),
       startAngle + sweepAngle,
-      pi - sweepAngle,
+      3 * pi / 2 - sweepAngle,
       false,
       backgroundPaint,
     );
@@ -50,7 +66,7 @@ class SemicircleProgressPainter extends CustomPainter {
     // Draw the text inside the semicircle
     TextSpan span = TextSpan(
       text: '$batteryTemp °C', // Convert progress to percentage
-      style: const TextStyle(fontSize: 36, color: Colors.white),
+      style: const TextStyle(fontSize: 64, color: Colors.white, fontFamily: 'Kanit'),
     );
     TextPainter textPainter = TextPainter(
       text: span,
@@ -66,6 +82,6 @@ class SemicircleProgressPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
+    return true;
   }
 }
