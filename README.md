@@ -1,16 +1,16 @@
-# push_temp
+# push_temp Android App
 
 Android application to display and record battery temperature
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+So far, it's a simple app with no controls, all it does is show you the temperature of your phone's battery and displays it in a nice way with a progress bar that changes color depending on the temperature.
 
-A few resources to get you started if this is your first Flutter project:
+- Blue when it's under 20 degrees celsius
+- Green when it's between 20 and 35 degrees celsius
+- Yellow when it's between 35 and 45 degrees celsius
+- Red when it's over 45 degrees celsius
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+***Created by: Adham Elshabasy***
